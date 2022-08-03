@@ -20,6 +20,8 @@
 #ifndef CS_PDF_WRITER_INL_H_
 #define CS_PDF_WRITER_INL_H_
 
+#include <cstdlib>
+
 #include "pdf_writer.h"
 
 namespace cs {
@@ -372,7 +374,7 @@ void ProbCrfStatePdfWriter<Abc>::WriteBody(FILE* fp) {
         fprintf(fp, "\\filldraw [sRect, fill=%s] (%.4f,%.4f) rectangle +(1,-1);\n",
                 i == center ? "yellow" : "darkgray", x, y);
         fprintf(fp, "\\node [sChar] at (%.4f,%.4f) {\\bf \\sffamily \\textcolor{%s}{%d}};\n",
-                x + 0.5, y - 0.5, i == center ? "red": "white", abs(i - center));
+                x + 0.5, y - 0.5, i == center ? "red": "white", abs((int64_t)i - (int64_t)center));
         
         DrawColumn(fp, context_probs[i], x, y);
     }
@@ -498,7 +500,7 @@ void WeightCrfStatePdfWriter<Abc>::WriteBody(FILE* fp) {
         fprintf(fp, "\\filldraw [sRect, fill=%s] (%.4f,%.4f) rectangle +(1,-1);\n",
                 i == center ? "yellow" : "darkgray", x, y);
         fprintf(fp, "\\node [sChar] at (%.4f,%.4f) {\\bf \\sffamily \\textcolor{%s}{%d}};\n",
-                x + 0.5, y - 0.5, i == center ? "red": "white", abs(i - center));
+                x + 0.5, y - 0.5, i == center ? "red": "white", abs((int64_t)i - (int64_t)center));
         double pos_probs[Abc::kSize];
         double neg_probs[Abc::kSize];
         for (size_t a = 0; a < Abc::kSize; ++a) {

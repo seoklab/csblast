@@ -53,7 +53,7 @@ class TamuraNeiMatrix : public SubstitutionMatrix<Dna> {
             + (1 - exp(-beta * time)) * f[j];
           q_[i][j] *= f[i]; // convert from subst. prob. to joint prob.
 
-        } else if (abs(static_cast<int>(i) - j) == 2) {  // transition
+        } else if (abs((int64_t)i - (int64_t)j) == 2) {  // transition
           q_[i][j] = 0.
             + exp(-beta * time) * (1 - exp(-alphai * time)) * (f[j] / pj)
             + (1 - exp(-beta * time)) * f[j];

@@ -26,7 +26,7 @@ DEBUG_FLAGS =			# Flags for release targets
 GPROF_FLAGS = -g -pg -fno-omit-frame-pointer -fno-inline-functions -DNDEBUG
 GTEST_FLAGS = -I$(GTEST_DIR) -I$(GTEST_DIR)/include -I/usr/include -DGTEST_USE_OWN_TR1_TUPLE=1 -DGTEST_HAS_PTHREAD=0
 
-FLAGS = -Wall -Wno-deprecated
+FLAGS = -Wall -Wno-deprecated -mavx2 -ffast-math -std=gnu++03
 ifeq ($(BITS), 32)
 	FLAGS += -m32
 else
